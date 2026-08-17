@@ -12,6 +12,7 @@ public final class EmployeeMapper {
         entity.setJobTitle(request.jobTitle());
         entity.setHireDate(request.hireDate());
         entity.setStatus(request.status());
+        entity.setPhone(request.phone());
         return entity;
     }
 
@@ -22,5 +23,6 @@ public final class EmployeeMapper {
         entity.setJobTitle(request.jobTitle());
         entity.setHireDate(request.hireDate());
         entity.setStatus(request.status());
+        entity.setPhone(request.phone());
     }
 }

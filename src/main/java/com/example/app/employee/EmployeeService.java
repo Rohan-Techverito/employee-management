@@ -41,6 +41,7 @@ public class EmployeeService {
         
         
         
+        
         if (request.department() != null) {
             entity.setDepartment(departmentRepository.findById(request.department())
                     .orElseThrow(() -> new DepartmentNotFoundException(request.department())));
@@ -55,6 +56,7 @@ public class EmployeeService {
         Employee entity = repository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
         EmployeeMapper.updateEntity(entity, request);
+        
         
         
         

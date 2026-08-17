@@ -53,6 +53,7 @@ class EmployeeServiceTest {
         fixture.setEmail("sample-email");
         fixture.setJobTitle("sample-job-title");
         fixture.setStatus("sample-status");
+        fixture.setPhone("sample-phone");
         fixture.setCreatedAt(Instant.parse("2024-01-01T00:00:00Z"));
         fixture.setUpdatedAt(Instant.parse("2024-01-01T00:00:00Z"));
         strategyFactory = new EmployeeStrategyFactory(List.of(strategy));
@@ -95,7 +96,7 @@ class EmployeeServiceTest {
 
     @Test
     void should_persist_entity_and_return_response_when_create_is_called() {
-        EmployeeCreateRequest request = new EmployeeCreateRequest("test-value", "test-value", "test-value", "test-value", java.time.LocalDate.of(2024, 1, 1), "test-value", UUID.fromString("11111111-1111-1111-1111-111111111111"));
+        EmployeeCreateRequest request = new EmployeeCreateRequest("test-value", "test-value", "test-value", "test-value", java.time.LocalDate.of(2024, 1, 1), "test-value", "test-value", UUID.fromString("11111111-1111-1111-1111-111111111111"));
         when(departmentRepository.findById(any())).thenReturn(Optional.of(new Department()));
         when(strategy.supports(any())).thenReturn(true);
         when(repository.save(any(Employee.class))).thenReturn(fixture);
@@ -115,7 +116,7 @@ class EmployeeServiceTest {
 
     @Test
     void should_update_entity_and_return_response_when_entity_exists() {
-        EmployeeUpdateRequest request = new EmployeeUpdateRequest("updated-value", "updated-value", "updated-value", "updated-value", java.time.LocalDate.of(2025, 6, 1), "updated-value", UUID.fromString("22222222-2222-2222-2222-222222222222"));
+        EmployeeUpdateRequest request = new EmployeeUpdateRequest("updated-value", "updated-value", "updated-value", "updated-value", java.time.LocalDate.of(2025, 6, 1), "updated-value", "updated-value", UUID.fromString("22222222-2222-2222-2222-222222222222"));
         when(departmentRepository.findById(any())).thenReturn(Optional.of(new Department()));
         when(repository.findById(EXISTING_ID)).thenReturn(Optional.of(fixture));
         when(repository.save(any(Employee.class))).thenReturn(fixture);
@@ -133,7 +134,7 @@ class EmployeeServiceTest {
 
     @Test
     void should_throw_entity_not_found_when_updating_with_unknown_id() {
-        EmployeeUpdateRequest request = new EmployeeUpdateRequest("updated-value", "updated-value", "updated-value", "updated-value", java.time.LocalDate.of(2025, 6, 1), "updated-value", UUID.fromString("22222222-2222-2222-2222-222222222222"));
+        EmployeeUpdateRequest request = new EmployeeUpdateRequest("updated-value", "updated-value", "updated-value", "updated-value", java.time.LocalDate.of(2025, 6, 1), "updated-value", "updated-value", UUID.fromString("22222222-2222-2222-2222-222222222222"));
         when(repository.findById(MISSING_ID)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> service.update(MISSING_ID, request))

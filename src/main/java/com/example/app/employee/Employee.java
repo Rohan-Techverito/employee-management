@@ -45,6 +45,9 @@ public class Employee {
     @Column(nullable = false)
     private String status;
 
+    @Column(nullable = true)
+    private String phone;
+
     @CreatedDate
     @Column(nullable = true, updatable = false)
     private Instant createdAt;
