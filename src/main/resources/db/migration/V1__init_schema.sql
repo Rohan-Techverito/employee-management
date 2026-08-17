@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS employees (
     job_title VARCHAR(255) NOT NULL,
     hire_date DATE NOT NULL,
     status VARCHAR(255) NOT NULL,
-    phone VARCHAR(255),
     created_at TIMESTAMP WITH TIME ZONE,
     updated_at TIMESTAMP WITH TIME ZONE,
     department_id UUID REFERENCES departments(id)

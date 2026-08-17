@@ -51,7 +51,7 @@ class EmployeeControllerIntegrationTest {
 
     /** Returns the minimal valid JSON payload, substituting live parent IDs for FK fields. */
     private String payload() {
-        return String.format("{\"firstName\":\"test-security\",\"lastName\":\"test-security\",\"email\":\"test@example.com\",\"jobTitle\":\"test-security\",\"hireDate\":\"2024-01-15\",\"status\":\"active\",\"phone\":\"+1-555-0100\",\"department\":\"%s\"}", departmentFixtureId);
+        return String.format("{\"firstName\":\"test-security\",\"lastName\":\"test-security\",\"email\":\"test@example.com\",\"jobTitle\":\"test-security\",\"hireDate\":\"2024-01-15\",\"status\":\"active\",\"department\":\"%s\"}", departmentFixtureId);
     }
 
     @BeforeAll
@@ -119,8 +119,7 @@ class EmployeeControllerIntegrationTest {
                 .andExpect(jsonPath("$.email").value("test@example.com"))
                 .andExpect(jsonPath("$.jobTitle").value("test-security"))
                 .andExpect(jsonPath("$.hireDate").value("2024-01-15"))
-                .andExpect(jsonPath("$.status").value("active"))
-                .andExpect(jsonPath("$.phone").value("+1-555-0100"));
+                .andExpect(jsonPath("$.status").value("active"));
     }
 
     @Test
@@ -155,8 +154,7 @@ class EmployeeControllerIntegrationTest {
                 .andExpect(jsonPath("$.email").value("test@example.com"))
                 .andExpect(jsonPath("$.jobTitle").value("test-security"))
                 .andExpect(jsonPath("$.hireDate").value("2024-01-15"))
-                .andExpect(jsonPath("$.status").value("active"))
-                .andExpect(jsonPath("$.phone").value("+1-555-0100"));
+                .andExpect(jsonPath("$.status").value("active"));
 
         assertThat(repository.count()).isEqualTo(1);
     }
@@ -175,7 +173,7 @@ class EmployeeControllerIntegrationTest {
     void should_return_400_when_create_request_has_blank_string_fields() throws Exception {
         mockMvc.perform(post("/api/v1/employees")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"firstName\":\"\",\"lastName\":\"\",\"email\":\"\",\"jobTitle\":\"\",\"hireDate\":\"\",\"status\":\"\",\"phone\":\"\"}"))
+                        .content("{\"firstName\":\"\",\"lastName\":\"\",\"email\":\"\",\"jobTitle\":\"\",\"hireDate\":\"\",\"status\":\"\"}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value(400));
     }
@@ -298,7 +296,7 @@ class EmployeeControllerIntegrationTest {
                 .andReturn().getResponse().getHeader("Location");
         mockMvc.perform(put(location)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"firstName\":\"\",\"lastName\":\"\",\"email\":\"\",\"jobTitle\":\"\",\"hireDate\":\"\",\"status\":\"\",\"phone\":\"\"}"))
+                        .content("{\"firstName\":\"\",\"lastName\":\"\",\"email\":\"\",\"jobTitle\":\"\",\"hireDate\":\"\",\"status\":\"\"}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value(400));
     }

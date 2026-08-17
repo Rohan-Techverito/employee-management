@@ -81,8 +81,6 @@ class EmployeeRepositoryTest {
         
         entity.setStatus("active");
         
-        entity.setPhone("+1-555-0100" + seed);
-        
         entity.setDepartment(null);
         return entity;
     }

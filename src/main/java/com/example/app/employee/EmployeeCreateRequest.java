@@ -19,7 +19,6 @@ public record EmployeeCreateRequest(
         @NotBlank String jobTitle,
         @NotNull LocalDate hireDate,
         @Pattern(regexp = "^(active|inactive|terminated)$") @NotBlank String status,
-        String phone,
         UUID department
 ) {
 }

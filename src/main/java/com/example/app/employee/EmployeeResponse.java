@@ -13,7 +13,6 @@ public record EmployeeResponse(
         String jobTitle,
         LocalDate hireDate,
         String status,
-        String phone,
         Instant createdAt,
         Instant updatedAt,
         DepartmentSummary department
@@ -29,7 +28,6 @@ entity.getEmail(),
 entity.getJobTitle(),
 entity.getHireDate(),
 entity.getStatus(),
-entity.getPhone(),
 entity.getCreatedAt(),
 entity.getUpdatedAt(),
 entity.getDepartment() != null
