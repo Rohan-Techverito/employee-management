@@ -53,6 +53,9 @@ public class Employee {
     @Column(nullable = true)
     private Instant updatedAt;
 
+    @Column(nullable = true)
+    private String phone;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = true)
     private Department department;

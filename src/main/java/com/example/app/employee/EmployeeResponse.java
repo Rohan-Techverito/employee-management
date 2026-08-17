@@ -15,6 +15,7 @@ public record EmployeeResponse(
         String status,
         Instant createdAt,
         Instant updatedAt,
+        String phone,
         DepartmentSummary department
 ) {
     public record DepartmentSummary(UUID id, String name, Instant createdAt, Instant updatedAt) {}
@@ -30,6 +31,7 @@ entity.getHireDate(),
 entity.getStatus(),
 entity.getCreatedAt(),
 entity.getUpdatedAt(),
+entity.getPhone(),
 entity.getDepartment() != null
                         ? new DepartmentSummary(entity.getDepartment().getId(), entity.getDepartment().getName(), entity.getDepartment().getCreatedAt(), entity.getDepartment().getUpdatedAt())
                         : null
