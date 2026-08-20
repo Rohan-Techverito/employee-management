@@ -20,7 +20,6 @@ public class EmployeeService {
 
     private final EmployeeRepository repository;
     private final DepartmentRepository departmentRepository;
-    private final EmployeeStrategyFactory strategyFactory;
     @Transactional(readOnly = true)
     public Page<EmployeeResponse> findAll(Pageable pageable) {
         return repository.findAll(pageable).map(EmployeeResponse::from);
@@ -47,7 +46,6 @@ public class EmployeeService {
                     .orElseThrow(() -> new DepartmentNotFoundException(request.department())));
         }
         
-        strategyFactory.resolve(entity.getStatus()).execute(entity);
         EmployeeResponse response = EmployeeResponse.from(repository.save(entity));
         return response;
     }

@@ -33,9 +33,7 @@ class EmployeeServiceTest {
     private EmployeeRepository repository;
     @Mock
     private DepartmentRepository departmentRepository;
-    @Mock
-    private EmployeeProcessingStrategy strategy;
-    private EmployeeStrategyFactory strategyFactory;
+    @InjectMocks
     private EmployeeService service;
 
     private static final UUID EXISTING_ID = UUID.fromString("11111111-1111-1111-1111-111111111111");
@@ -56,8 +54,6 @@ class EmployeeServiceTest {
         fixture.setCreatedAt(Instant.parse("2024-01-01T00:00:00Z"));
         fixture.setUpdatedAt(Instant.parse("2024-01-01T00:00:00Z"));
         fixture.setPhone("sample-phone");
-        strategyFactory = new EmployeeStrategyFactory(List.of(strategy));
-        service = new EmployeeService(repository, departmentRepository, strategyFactory);
     }
 
     // ── findAll ────────────────────────────────────────────────────────────────
@@ -98,7 +94,6 @@ class EmployeeServiceTest {
     void should_persist_entity_and_return_response_when_create_is_called() {
         EmployeeCreateRequest request = new EmployeeCreateRequest("test-value", "test-value", "test-value", "test-value", java.time.LocalDate.of(2024, 1, 1), "test-value", "test-value", UUID.fromString("11111111-1111-1111-1111-111111111111"));
         when(departmentRepository.findById(any())).thenReturn(Optional.of(new Department()));
-        when(strategy.supports(any())).thenReturn(true);
         when(repository.save(any(Employee.class))).thenReturn(fixture);
 
         EmployeeResponse result = service.create(request);

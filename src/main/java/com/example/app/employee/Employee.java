@@ -61,20 +61,6 @@ public class Employee {
     private Department department;
 
 
-    // ─── Tell-Don't-Ask state predicates ──────────────────────────────────────
-
-    public boolean isActive() {
-        return "active".equals(status);
-    }
-
-    public boolean isInactive() {
-        return "inactive".equals(status);
-    }
-
-    public boolean isTerminated() {
-        return "terminated".equals(status);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

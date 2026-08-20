@@ -1,0 +1,10 @@
+ALTER TABLE "employees" RENAME COLUMN "department_id" TO "department";
+ALTER TABLE "employees" ALTER COLUMN "email" DROP NOT NULL;
+ALTER TABLE "employees" ALTER COLUMN "first_name" DROP NOT NULL;
+ALTER TABLE "employees" ALTER COLUMN "hire_date" DROP NOT NULL;
+ALTER TABLE "employees" ALTER COLUMN "job_title" DROP NOT NULL;
+ALTER TABLE "employees" ALTER COLUMN "last_name" DROP NOT NULL;
+ALTER TABLE "employees" ALTER COLUMN "status" DROP NOT NULL;
+ALTER TABLE "users" ALTER COLUMN "email" DROP NOT NULL;
+ALTER TABLE "users" ALTER COLUMN "password_hash" DROP NOT NULL;
+ALTER TABLE "users" ALTER COLUMN "role" DROP NOT NULL;
