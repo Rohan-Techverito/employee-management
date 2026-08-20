@@ -43,20 +43,6 @@ public class EmployeeSkill {
     private Instant updatedAt;
 
 
-    // ─── Tell-Don't-Ask state predicates ──────────────────────────────────────
-
-    public boolean isBeginner() {
-        return "beginner".equals(proficiencyLevel);
-    }
-
-    public boolean isIntermediate() {
-        return "intermediate".equals(proficiencyLevel);
-    }
-
-    public boolean isExpert() {
-        return "expert".equals(proficiencyLevel);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

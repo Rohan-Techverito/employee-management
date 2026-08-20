@@ -15,7 +15,6 @@ import org.springframework.data.domain.Pageable;
 public class EmployeeSkillService {
 
     private final EmployeeSkillRepository repository;
-    private final EmployeeSkillStrategyFactory strategyFactory;
     public Page<EmployeeSkillResponse> findAll(Pageable pageable) {
         return repository.findAll(pageable).map(EmployeeSkillResponse::from);
     }
@@ -30,7 +29,6 @@ public class EmployeeSkillService {
         
         
         
-        strategyFactory.resolve(entity.getProficiencyLevel()).execute(entity);
         EmployeeSkillResponse response = EmployeeSkillResponse.from(repository.save(entity));
         return response;
     }

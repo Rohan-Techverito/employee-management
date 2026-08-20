@@ -29,9 +29,7 @@ class EmployeeSkillServiceTest {
 
     @Mock
     private EmployeeSkillRepository repository;
-    @Mock
-    private EmployeeSkillProcessingStrategy strategy;
-    private EmployeeSkillStrategyFactory strategyFactory;
+    @InjectMocks
     private EmployeeSkillService service;
 
     private static final UUID EXISTING_ID = UUID.fromString("11111111-1111-1111-1111-111111111111");
@@ -49,8 +47,6 @@ class EmployeeSkillServiceTest {
         fixture.setProficiencyLevel("sample-proficiency-level");
         fixture.setCreatedAt(Instant.parse("2024-01-01T00:00:00Z"));
         fixture.setUpdatedAt(Instant.parse("2024-01-01T00:00:00Z"));
-        strategyFactory = new EmployeeSkillStrategyFactory(List.of(strategy));
-        service = new EmployeeSkillService(repository, strategyFactory);
     }
 
     // ── findAll ────────────────────────────────────────────────────────────────
@@ -90,7 +86,6 @@ class EmployeeSkillServiceTest {
     @Test
     void should_persist_entity_and_return_response_when_create_is_called() {
         EmployeeSkillCreateRequest request = new EmployeeSkillCreateRequest(UUID.fromString("11111111-1111-1111-1111-111111111111"), "test-value", "test-value");
-        when(strategy.supports(any())).thenReturn(true);
         when(repository.save(any(EmployeeSkill.class))).thenReturn(fixture);
 
         EmployeeSkillResponse result = service.create(request);
